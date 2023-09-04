@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <form id="form">
+            <h1>Form Validation</h1>
+            <div class="input-control">
+                <label>Name :</label>
+                <input type="text" id="name" placeholder="name">
+            </div>
+            <div class="input-control">
+                <label>Address :</label>
+                <textarea id="address" name="address" rows="5" cols="33">
+                    </textarea>
+            </div>
+            <div class="input-control">
+                <label>DOB :</label>
+                <input type="date" id="dob" name="date-0f-birth">
+            </div>
+            <div class="input-control">
+                <label>Age :</label>
+                <select name="" id="age">
+                    <option value=""></option>
+                </select>
+                <div id="ageerror"></div>
+            </div>
+            <div class="input-control radio">
+                <input class="radio" type="radio" id="female" name="gender" value="female">
+                <label class="radio" for="female">Female</label>
+                <input class="radio" type="radio" id="male" name="gender" value="male">
+                <label class="radio" for="male" id="male">Male</label>
+                <div id="radioerror"></div>
+            </div>
+            <div class="input-control">
+                <input class="check" type="checkbox" id="term" name="term" placeholder="agree">
+                <label class="check" for="term">Agree to terms</label>
+                <div id="checkerror"></div>
+            </div>
+            <button type="submit" id="submit">Submit</button>
+        </form>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
