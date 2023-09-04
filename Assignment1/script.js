@@ -33,7 +33,7 @@ $(document).ready(function () {
         }
 
         if (!($('#term').is(':checked'))) {
-            $('#checkerror').after('<div class="error">please confirm</div>');
+            $('#checkerror').after('<div class="error">Agree the terms and condition</div>');
         }
     }
 })
