@@ -17,6 +17,7 @@ $(document).ready(function () {
         $(".error").remove();
 
         if (nameVal === '') {
+            $("#name").addClass("error");
             name.after('<div class="error">Name field is required</div>');
         }
         if (address.val().trim() === '') {
