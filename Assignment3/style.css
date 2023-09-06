@@ -1,0 +1,13 @@
+.btn-styled {
+    margin-top: 50px;
+    background-color: rgba(117, 51, 84, 0.953);
+    width: 200px;
+    height: 40px;
+    color: white;
+}
+
+img {
+    width: 400px;
+    height: 380px;
+    display: block;
+}
