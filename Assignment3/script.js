@@ -1,7 +1,7 @@
 $(document).ready(function () {
     let count2 = 0;
-    $('<button id="head" class="btn-styled" type="button">Clik to view heading</button>').appendTo('body');
     let count = 0;
+    $('<button id="head" class="btn-styled" type="button">Clik to view heading</button>').appendTo('body');
     $("#head").on('click', function () {
         count += 1;
         if (count === 1) {
