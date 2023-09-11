@@ -2,7 +2,7 @@ $(document).ready(function () {
     let id = 0;
     let total = 0;
     let search = ''
-    const arr = ['beefbiriyani', 'beefshavarma', 'biriyani', 'Choclatecake', 'dosa', 'hyderabadbiriyani', 'icecream', 'juice', 'pizza', 'shavarma']
+    const arr = ['beefbiriyani', 'beefshavarma', 'biriyani', 'Choclatecake', 'dosa', 'hyderabadbiriyani', 'icecream', 'freshjuice', 'pizza', 'shavarma']
     $('#search').on('input', function (event) {
         search += event.key;
         let searchval = $('#search').val().toLowerCase();
