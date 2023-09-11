@@ -2,15 +2,20 @@ $(document).ready(function () {
     let id = 0;
     let total = 0;
     let search = ''
-    const arr = ['beefbiriyani', 'beefshavarma', 'biriyani', 'Choclatecake', 'dosa', 'hyderabadbiriyani', 'icecream', 'freshjuice', 'pizza', 'shavarma']
+    const arr = ['beefbiriyani', 'beefshavarma', 'biriyani', 'Choclatecake', 'dosa', 'hyderabadbiriyani', 'icecream', 'freshjuice', 'shavarma']
     $('#search').on('input', function (event) {
         search += event.key;
         let searchval = $('#search').val().toLowerCase();
         if (!(search === '')) {
+            let flag = 0;
             arr.forEach(element => {
+                flag++;
                 if (element.toLowerCase().includes(searchval) === false) {
                     $('#' + element).parent().hide();
-                } else {
+                } else if (flag > arr.length) {
+
+                }
+                else {
                     $('#' + element).parent().show();
                 }
             });
