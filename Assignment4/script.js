@@ -17,6 +17,7 @@ $(document).ready(function () {
             });
         }
     });
+    $('aside').hide();
     $('.fa-shopping-cart').on('click', function () {
         $('aside').toggle();
     })
