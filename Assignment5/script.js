@@ -12,7 +12,7 @@ $(document).ready(function () {
   let limit = 3;
   let start = 0;
   if (id == 0) {
-    LoadProduct(limit, start)
+    LoadProduct(start, start)
   }
   function LoadProduct(start) {
     $.ajax({
@@ -175,8 +175,10 @@ $(document).ready(function () {
     if ($(window).scrollTop() >= $('.container').height() - $(window).height()) {
       limit += 3
       start += limit;
-      console.log(start);
-      LoadProduct(start);
+      setTimeout(() => {
+        LoadProduct(limit, start);
+        console.log("Delayed for 1 second.");
+      }, "1000");
 
     }
   })
