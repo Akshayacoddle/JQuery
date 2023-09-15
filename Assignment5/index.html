@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+    <nav class="navbar">
+        <h1>shopping</h1>
+        <form id="form">
+            <input type="text" placeholder="Search.." name="search" id="search">
+        </form>
+
+        <select name="productprice" id="dropdownprice" value="productprice">
+            <option value="AllPrice">All-Price</option>
+            <option value="High to Low">High to Low</option>
+            <option value="Low to High">Low to High</option>
+            <option value="Rating">Rating</option>
+        </select>
+        <select name="productprice" id="categorydrop" value="productprice">
+            <option value="Category">Category</option>
+            <option value="laptops">laptops</option>
+            <option value="fragrances">fragrances</option>
+            <option value="skincare">skincare</option>
+            <option value="home-decoration">home-decoration</option>
+        </select>
+        <i class="fa fa-shopping-cart" style="font-size:36px"></i>
+    </nav>
+    <div class="container">
+        <aside>
+            <h3>Your Cart</h3>
+            <div class="cart">
+                <div>ITEM</div>
+                <div>QUANTITY</div>
+                <div>PRICE</div>
+            </div>
+
+            <div class="total">
+                <p>Total</p>
+                <div class="amount">0</div>
+            </div>
+        </aside>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script src="script.js"></script>
+
+</body>
+
+</html>
