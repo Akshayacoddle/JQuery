@@ -12,9 +12,9 @@ $(document).ready(function () {
   let limit = 3;
   let start = 0;
   if (id == 0) {
-    LoadProduct(start, start)
+    LoadProduct(limit, start)
   }
-  function LoadProduct(start) {
+  function LoadProduct(start, limit) {
     $.ajax({
       url: "https://dummyjson.com/products",
       method: 'GET',
