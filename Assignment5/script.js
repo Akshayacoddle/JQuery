@@ -1,4 +1,8 @@
 $(document).ready(function () {
+    $('aside').hide();
+    $('.fa-shopping-cart').on('click', function () {
+        $('aside').toggle();
+    })
     let k = 0;
     let total = 0;
     let item = 0;
@@ -10,15 +14,14 @@ $(document).ready(function () {
     let eachItem;
     let limit = 3;
     let start = 0;
-
+    let ScrollHandler = true;
+    let array = []
     $.getJSON("https://dummyjson.com/products", function (event) {
         data = event;
         eachItem = data.products;
         scrollTime(limit)
     })
     function DisplayItem(datas) {
-
-        console.log(datas);
         let discount = 0;
         let disprice = 0;
         $('.container').append('<div class="item" id="' + datas['id'] + '">')
@@ -59,60 +62,83 @@ $(document).ready(function () {
         }
     }
     let pervious = 'category';
-    $("#categorydrop").on("click", function (e) {
-        $(window).unbind();
+    $("#categorydrop").on("change", function (e) {
+
         $('.item').remove()
-        let array = []
-        if (pervious !== e.target.value) {
-            for (let i = 0; i < data.products.length; i++) {
-                productItem = data.products[i]
-                let catg = productItem['category']
-                if (catg === e.target.value) {
-                    array.push(productItem)
-                    let num = this;
-                    console.log(productItem);
-                    DisplayItem(productItem)
 
-                    $('#' + (i + 1)).show();
+        let catval = $("#categorydrop").val();
+        if (catval == 'Category') {
+            ScrollHandler = true;
+            limit = 3
+            scrollTime(limit)
+        }
+        else {
+            if (pervious !== e.target.value) {
+                ScrollHandler = false;
+                for (let i = 0; i < data.products.length; i++) {
+                    productItem = data.products[i]
+                    let catg = productItem['category']
+                    if (catg === e.target.value) {
+                        DisplayItem(productItem)
 
-                } else if (!((catg === e.target.value))) {
-                    $('#' + (i + 1)).hide();
+                        $('#' + (i + 1)).show();
+
+                    } else if (!((catg === e.target.value))) {
+                        $('#' + (i + 1)).hide();
+
+                    }
 
                 }
-
             }
         }
     })
     $('#search').on('input', function (index) {
-        $(window).unbind();
+
+        search += index.key;
+        ScrollHandler = false;
         $('.item').remove()
         if (!(search === '')) {
             let flag = 1;
             let searchval = $('#search').val().toLowerCase();
-            for (let i = 0; i < data.products.length; i++) {
-                flag++;
-                console.log(index.target.value);
-                productItem = data.products[i]
-                let catg = productItem['title']
-                console.log(catg);
-                if (catg.toLowerCase().includes(searchval) === true) {
-                    DisplayItem(productItem)
+            let catval = $("#categorydrop").val();
+            if (catval == 'Category') {
+                for (let i = 0; i < data.products.length; i++) {
+                    flag++;
+                    productItem = data.products[i]
+                    let catg = productItem['title']
+                    if (catg.toLowerCase().includes(searchval) === true) {
+                        DisplayItem(productItem)
+                    }
+                }
+            } else if (catval != 'Category') {
+                for (let i = 0; i < data.products.length; i++) {
+                    productItem = data.products[i]
+                    let catg = productItem['category']
+                    if (catval == catg) {
+                        let cattitle = productItem['title']
+                        if (cattitle.toLowerCase().includes(searchval) === true) {
+                            DisplayItem(productItem)
+                        }
+                    }
                 }
             }
+
         }
-        search += index.key;
+
     });
     $("#dropdownprice").on("change", function (e) {
         var sortDirection = $(this).val();
         var products = $('.item');
-        console.log(data.products);
+
         if (sortDirection === 'High to Low') {
+
             products.sort(function (a, b) {
                 var firstval = Number($(".price", a).text().slice(7));
                 var secondval = Number($(".price", b).text().slice(7));
                 return secondval - firstval;
 
             });
+
         } else if (sortDirection === 'Low to High') {
 
             products.sort(function (a, b) {
@@ -135,7 +161,6 @@ $(document).ready(function () {
     let btnArray = [];
     $('.container').on('click', '.btn', function (event) {
         let i = 0;
-        // console.log($(event.target).attr('id'));
         let btnid = $(event.target).attr('id')
 
         let current = $(event.target.parentElement);
@@ -143,7 +168,6 @@ $(document).ready(function () {
             if (btnArray[i] === btnid) {
                 let cartitems = $(event.target.parentElement.parentElement.parentElement).find('.' + btnid);
                 let cartitemsval = Number((cartitems.find('#' + btnid)).val()) + 1
-                console.log(cartitems);
                 cartitems.find('input').val(cartitemsval);
                 i = 0;
                 break
@@ -190,7 +214,6 @@ $(document).ready(function () {
             total -= priceid
             $('.amount').html(total)
             $(e.target.parentElement.parentElement).remove();
-            console.log(btnArray);
             let removedCartItem = $(e.target.parentElement.parentElement).attr('class');
             let itemNum = removedCartItem.slice(9)
             for (let j = 0; j < btnArray.length; j++) {
@@ -203,13 +226,14 @@ $(document).ready(function () {
     });
 
     $(window).scroll(function () {
-        if ($(window).scrollTop() >= $('.container').height() - $(window).height()) {
-            setTimeout(() => {
-                limit += 3
-                scrollTime(limit, start);
-                console.log("Delayed for 1 second.");
-            }, "500");
+        if (ScrollHandler) {
+            if ($(window).scrollTop() >= $('.container').height() - $(window).height()) {
+                setTimeout(() => {
+                    limit += 3
+                    scrollTime(limit, start);
+                }, "500");
 
+            }
         }
     })
 })
